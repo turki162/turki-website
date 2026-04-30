@@ -4,216 +4,318 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Turki | Portfolio</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800;900&display=swap" rel="stylesheet">
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Cairo', sans-serif;
-}
+  :root {
+    --blue: #007bff;
+    --cyan: #00c6ff;
+    --dark: #0a0f1e;
+    --card-bg: #111827;
+    --card-border: rgba(255,255,255,0.07);
+    --text-muted: rgba(255,255,255,0.5);
+  }
 
-body {
-    background: #f7f9fc;
-    color: #0a0a0a;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
 
-/* Header */
-header {
-    padding: 30px 8%;
+  body { background: var(--dark); color: #f0f4ff; overflow-x: hidden; }
+
+  header {
+    padding: 24px 8%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(16px);
+  }
 
-.logo {
-    font-weight: 800;
-    font-size: 22px;
-}
-
-/* Hero */
-.hero {
-    padding: 80px 8%;
-}
-
-.hero h1 {
-    font-size: 48px;
-    line-height: 1.3;
-}
-
-.hero span {
-    background: linear-gradient(90deg,#007bff,#00c6ff);
+  .logo {
+    font-weight: 900;
+    font-size: 34px;
+    letter-spacing: 5px;
+    background: linear-gradient(90deg, #ffffff 0%, var(--cyan) 100%);
     -webkit-background-clip: text;
-    color: transparent;
-}
+    -webkit-text-fill-color: transparent;
+  }
 
-.hero p {
-    margin-top: 15px;
-    max-width: 600px;
-    opacity: 0.7;
-}
+  .header-actions { display: flex; gap: 12px; align-items: center; }
 
-.btn {
-    display: inline-block;
-    margin-top: 25px;
-    padding: 12px 28px;
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 11px 24px;
     border-radius: 30px;
-    background: linear-gradient(90deg,#007bff,#00c6ff);
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    transform: translateY(-3px);
-}
-
-/* Sections */
-section {
-    padding: 70px 8%;
-}
-
-.section-title {
-    font-size: 28px;
-    font-weight: 800;
-    margin-bottom: 25px;
-}
-
-/* Grid */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-    gap: 20px;
-}
-
-.card {
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    border: 1px solid rgba(0,0,0,0.05);
-}
-
-.card h3 {
-    margin-bottom: 10px;
-}
-
-/* Experience */
-.exp {
-    margin-bottom: 20px;
-}
-
-.exp h4 {
+    font-family: 'Cairo', sans-serif;
     font-weight: 700;
-}
+    font-size: 15px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
+  }
 
-.exp span {
+  .btn-primary {
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    color: white;
+    box-shadow: 0 4px 24px rgba(0,123,255,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,123,255,0.5); }
+
+  .btn-outline { background: transparent; color: #f0f4ff; border: 1px solid var(--card-border); }
+  .btn-outline:hover { background: rgba(255,255,255,0.07); transform: translateY(-3px); }
+
+  .hero {
+    padding: 110px 8% 90px;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 8%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,123,255,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-block;
+    padding: 5px 16px;
+    border-radius: 20px;
+    background: rgba(0,123,255,0.15);
+    border: 1px solid rgba(0,123,255,0.3);
     font-size: 13px;
-    opacity: 0.6;
-}
+    color: var(--cyan);
+    margin-bottom: 22px;
+  }
 
-/* Footer */
-footer {
+  .hero h1 { font-size: 58px; font-weight: 900; line-height: 1.25; max-width: 720px; }
+
+  .hero h1 .highlight {
+    background: linear-gradient(90deg, var(--blue), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero p { margin-top: 20px; max-width: 580px; color: var(--text-muted); font-size: 17px; line-height: 1.85; }
+  .hero-actions { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; }
+
+  section { padding: 80px 8%; }
+
+  .section-header { display: flex; align-items: center; gap: 14px; margin-bottom: 36px; }
+  .section-title { font-size: 26px; font-weight: 800; }
+  .section-line { flex: 1; height: 1px; background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+
+  .card {
+    background: var(--card-bg);
+    padding: 24px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover { transform: translateY(-5px); border-color: rgba(0,123,255,0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
+
+  .card-icon { font-size: 28px; margin-bottom: 12px; }
+  .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #e8f0ff; }
+  .card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  .card-featured {
+    background: linear-gradient(135deg, rgba(0,123,255,0.12) 0%, rgba(0,198,255,0.05) 100%);
+    border-color: rgba(0,123,255,0.35);
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .card-featured .card-icon { font-size: 44px; margin-bottom: 0; }
+  .card-featured-body h3 { font-size: 19px; }
+
+  .card-featured-badge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background: rgba(0,198,255,0.12);
+    border: 1px solid rgba(0,198,255,0.3);
+    font-size: 12px;
+    color: var(--cyan);
+  }
+
+  .exp {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 18px;
+    padding: 24px;
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+  }
+
+  .exp:hover { border-color: rgba(0,123,255,0.25); transform: translateX(-4px); }
+
+  .exp-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue), var(--cyan));
+    margin-top: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(0,198,255,0.5);
+  }
+
+  .exp-content h4 { font-weight: 700; font-size: 17px; margin-bottom: 6px; }
+
+  .exp-content span {
+    font-size: 12px; color: var(--cyan);
+    display: inline-block; margin-bottom: 8px;
+    padding: 2px 10px;
+    background: rgba(0,198,255,0.1);
+    border-radius: 10px;
+  }
+
+  .exp-content p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+
+  footer {
     text-align: center;
-    padding: 40px;
-    opacity: 0.5;
-}
+    padding: 48px 8%;
+    border-top: 1px solid var(--card-border);
+    color: var(--text-muted);
+    font-size: 14px;
+  }
+
+  footer a { color: var(--cyan); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 36px; }
+    .logo { font-size: 26px; }
+    .card-featured { flex-direction: column; }
+  }
 </style>
 </head>
-
 <body>
 
 <header>
-    <div class="logo">TURKI</div>
-    <a href="mailto:trke_max@icloud.com" class="btn">توظيفي</a>
+  <div class="logo">TURKI</div>
+  <div class="header-actions">
+    <a href="YOUR_CV_LINK_HERE.pdf" download class="btn btn-outline">📄 السيرة الذاتية</a>
+    <a href="mailto:trke_max@icloud.com" class="btn btn-primary">توظيفي</a>
+  </div>
 </header>
 
 <section class="hero">
-    <h1>
-        مطور <span>تقني</span><br>
-        أبني حلول عملية وسريعة التنفيذ
-    </h1>
-    <p>
-        خبرة في خدمة العملاء والأنظمة التقنية، مع خلفية في الآلات الدقيقة.
-        أركز على تقديم حلول ذكية، قابلة للتطبيق، وتحقق نتائج فعلية في بيئة العمل.
-    </p>
-    <a href="mailto:trke_max@icloud.com" class="btn">تواصل مباشر</a>
+  <div class="hero-tag">🚀 متاح لفرص جديدة</div>
+  <h1>مطور <span class="highlight">تقني</span><br>أبني حلول عملية<br>وسريعة التنفيذ</h1>
+  <p>خبرة في خدمة العملاء والأنظمة التقنية، مع خلفية في الآلات الدقيقة. أركز على تقديم حلول ذكية، قابلة للتطبيق، وتحقق نتائج فعلية في بيئة العمل.</p>
+  <div class="hero-actions">
+    <a href="mailto:trke_max@icloud.com" class="btn btn-primary">تواصل مباشر</a>
+    <a href="YOUR_CV_LINK_HERE.pdf" download class="btn btn-outline">📄 تحميل CV</a>
+  </div>
 </section>
 
 <section>
+  <div class="section-header">
     <div class="section-title">المهارات الأساسية</div>
-    <div class="grid">
+    <div class="section-line"></div>
+  </div>
+  <div class="grid">
 
-        <div class="card">
-            <h3>Front-End</h3>
-            <p>HTML, CSS, JavaScript</p>
-        </div>
-
-        <div class="card">
-            <h3>Back-End</h3>
-            <p>Python</p>
-        </div>
-
-        <div class="card">
-            <h3>تحليل وأنظمة</h3>
-            <p>حل مشاكل، بناء حلول تقنية</p>
-        </div>
-
-        <div class="card">
-            <h3>الآلات الدقيقة</h3>
-            <p>Instrumentation & Control</p>
-        </div>
-
-        <div class="card">
-            <h3>خدمة العملاء</h3>
-            <p>تواصل احترافي وفهم احتياجات العميل</p>
-        </div>
-
+    <div class="card card-featured">
+      <div class="card-icon">⚙️</div>
+      <div class="card-featured-body">
+        <h3>الآلات الدقيقة</h3>
+        <p>Instrumentation & Control — خبرة ميدانية في بيئات صناعية حساسة ومراقبة الأنظمة.</p>
+        <div class="card-featured-badge">✦ تخصص رئيسي</div>
+      </div>
     </div>
+
+    <div class="card">
+      <div class="card-icon">🖥️</div>
+      <h3>Front-End</h3>
+      <p>HTML, CSS, JavaScript</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Back-End</h3>
+      <p>Python</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>تحليل وأنظمة</h3>
+      <p>حل مشاكل وبناء حلول تقنية متكاملة</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🤝</div>
+      <h3>خدمة العملاء</h3>
+      <p>تواصل احترافي وفهم احتياجات العميل</p>
+    </div>
+
+  </div>
 </section>
 
 <section>
+  <div class="section-header">
     <div class="section-title">الخبرات</div>
+    <div class="section-line"></div>
+  </div>
 
-    <div class="exp">
-        <h4>مندوب مبيعات شرائح</h4>
-        <span>سنة واحدة</span>
-        <p>تحقيق أهداف مبيعات والتعامل المباشر مع العملاء.</p>
+  <div class="exp">
+    <div class="exp-dot"></div>
+    <div class="exp-content">
+      <h4>فني آلات دقيقة — معمل غاز</h4>
+      <span>سنتين</span>
+      <p>العمل في بيئة تشغيل حساسة ومراقبة الأنظمة الصناعية.</p>
     </div>
+  </div>
 
-    <div class="exp">
-        <h4>فني آلات دقيقة - معمل غاز</h4>
-        <span>سنتين</span>
-        <p>العمل في بيئة تشغيل حساسة ومراقبة الأنظمة الصناعية.</p>
+  <div class="exp">
+    <div class="exp-dot"></div>
+    <div class="exp-content">
+      <h4>مندوب مبيعات شرائح</h4>
+      <span>سنة واحدة</span>
+      <p>تحقيق أهداف مبيعات والتعامل المباشر مع العملاء.</p>
     </div>
-
+  </div>
 </section>
 
 <section>
+  <div class="section-header">
     <div class="section-title">ليش أنا؟</div>
-    <div class="grid">
-
-        <div class="card">
-            <h3>تنفيذ سريع</h3>
-            <p>أحول الأفكار إلى نتائج بدون تعقيد.</p>
-        </div>
-
-        <div class="card">
-            <h3>تفكير عملي</h3>
-            <p>أركز على الحلول الواقعية مو النظرية.</p>
-        </div>
-
-        <div class="card">
-            <h3>تواصل قوي</h3>
-            <p>أفهم احتياج العمل بسرعة وأتفاعل معه.</p>
-        </div>
-
+    <div class="section-line"></div>
+  </div>
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>تنفيذ سريع</h3>
+      <p>أحول الأفكار إلى نتائج بدون تعقيد.</p>
     </div>
+    <div class="card">
+      <div class="card-icon">🧠</div>
+      <h3>تفكير عملي</h3>
+      <p>أركز على الحلول الواقعية مو النظرية.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">💬</div>
+      <h3>تواصل قوي</h3>
+      <p>أفهم احتياج العمل بسرعة وأتفاعل معه.</p>
+    </div>
+  </div>
 </section>
 
 <footer>
-    © 2026 Turki — جاهز لفرص جديدة
+  <p>© 2026 <strong>Turki</strong> — جاهز لفرص جديدة &nbsp;·&nbsp; <a href="mailto:trke_max@icloud.com">trke_max@icloud.com</a></p>
 </footer>
 
 </body>
