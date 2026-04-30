@@ -16,7 +16,6 @@
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-
   body { background: var(--dark); color: #f0f4ff; overflow-x: hidden; }
 
   header {
@@ -41,8 +40,6 @@
     -webkit-text-fill-color: transparent;
   }
 
-  .header-actions { display: flex; gap: 12px; align-items: center; }
-
   .btn {
     display: inline-flex;
     align-items: center;
@@ -53,7 +50,6 @@
     font-weight: 700;
     font-size: 15px;
     text-decoration: none;
-    cursor: pointer;
     border: none;
     transition: all 0.3s ease;
   }
@@ -65,13 +61,10 @@
   }
   .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,123,255,0.5); }
 
-  .btn-outline { background: transparent; color: #f0f4ff; border: 1px solid var(--card-border); }
+  .btn-outline { background: transparent; color: #f0f4ff; border: 1px solid rgba(255,255,255,0.2); }
   .btn-outline:hover { background: rgba(255,255,255,0.07); transform: translateY(-3px); }
 
-  .hero {
-    padding: 110px 8% 90px;
-    position: relative;
-  }
+  .hero { padding: 110px 8% 90px; position: relative; }
 
   .hero::before {
     content: '';
@@ -119,15 +112,13 @@
     border: 1px solid var(--card-border);
     transition: all 0.3s ease;
   }
-
   .card:hover { transform: translateY(-5px); border-color: rgba(0,123,255,0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.4); }
-
   .card-icon { font-size: 28px; margin-bottom: 12px; }
   .card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: #e8f0ff; }
   .card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
 
   .card-featured {
-    background: linear-gradient(135deg, rgba(0,123,255,0.12) 0%, rgba(0,198,255,0.05) 100%);
+    background: linear-gradient(135deg, rgba(0,123,255,0.12), rgba(0,198,255,0.05));
     border-color: rgba(0,123,255,0.35);
     grid-column: 1 / -1;
     display: flex;
@@ -135,10 +126,8 @@
     gap: 22px;
     flex-wrap: wrap;
   }
-
   .card-featured .card-icon { font-size: 44px; margin-bottom: 0; }
   .card-featured-body h3 { font-size: 19px; }
-
   .card-featured-badge {
     display: inline-block;
     margin-top: 8px;
@@ -160,29 +149,50 @@
     border: 1px solid var(--card-border);
     transition: all 0.3s ease;
   }
-
   .exp:hover { border-color: rgba(0,123,255,0.25); transform: translateX(-4px); }
 
   .exp-dot {
     width: 12px; height: 12px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--blue), var(--cyan));
-    margin-top: 6px;
-    flex-shrink: 0;
+    margin-top: 6px; flex-shrink: 0;
     box-shadow: 0 0 10px rgba(0,198,255,0.5);
   }
 
   .exp-content h4 { font-weight: 700; font-size: 17px; margin-bottom: 6px; }
+  .exp-meta { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
 
   .exp-content span {
     font-size: 12px; color: var(--cyan);
-    display: inline-block; margin-bottom: 8px;
     padding: 2px 10px;
     background: rgba(0,198,255,0.1);
     border-radius: 10px;
   }
+  .exp-content span.exp-company {
+    color: rgba(255,255,255,0.6);
+    background: rgba(255,255,255,0.05);
+  }
 
-  .exp-content p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
+  .exp-bullets { list-style: none; margin-top: 8px; }
+  .exp-bullets li {
+    font-size: 14px; color: var(--text-muted); line-height: 1.8;
+    position: relative; padding-right: 14px;
+  }
+  .exp-bullets li::before { content: '–'; position: absolute; right: 0; color: var(--cyan); }
+
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+
+  .cert-item {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 12px;
+    padding: 16px 20px;
+    font-size: 14px; color: var(--text-muted);
+    display: flex; gap: 10px; align-items: flex-start;
+    transition: all 0.3s ease;
+  }
+  .cert-item:hover { border-color: rgba(0,123,255,0.25); color: #e8f0ff; }
+  .cert-item .cert-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 
   footer {
     text-align: center;
@@ -191,7 +201,6 @@
     color: var(--text-muted);
     font-size: 14px;
   }
-
   footer a { color: var(--cyan); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
@@ -199,6 +208,7 @@
     .hero h1 { font-size: 36px; }
     .logo { font-size: 26px; }
     .card-featured { flex-direction: column; }
+    .hero-actions { flex-direction: column; }
   }
 </style>
 </head>
@@ -206,19 +216,16 @@
 
 <header>
   <div class="logo">TURKI</div>
-  <div class="header-actions">
-    <a href="YOUR_CV_LINK_HERE.pdf" download class="btn btn-outline">📄 السيرة الذاتية</a>
-    <a href="mailto:trke_max@icloud.com" class="btn btn-primary">توظيفي</a>
-  </div>
+  <a href="mailto:trke_max@icloud.com" class="btn btn-primary">توظيفي</a>
 </header>
 
 <section class="hero">
   <div class="hero-tag">🚀 متاح لفرص جديدة</div>
-  <h1>مطور <span class="highlight">تقني</span><br>أبني حلول عملية<br>وسريعة التنفيذ</h1>
-  <p>خبرة في خدمة العملاء والأنظمة التقنية، مع خلفية في الآلات الدقيقة. أركز على تقديم حلول ذكية، قابلة للتطبيق، وتحقق نتائج فعلية في بيئة العمل.</p>
+  <h1>فني آلات دقيقة<br>و<span class="highlight">مطور تقني</span></h1>
+  <p>أكثر من 3 سنوات خبرة في مشاريع النفط والغاز — مشروع جافورة. خلفية في Instrumentation & Control، مع مهارات برمجية في Front-End وBack-End. أبني حلول ذكية في بيئات العمل الصناعية والتقنية.</p>
   <div class="hero-actions">
     <a href="mailto:trke_max@icloud.com" class="btn btn-primary">تواصل مباشر</a>
-    <a href="YOUR_CV_LINK_HERE.pdf" download class="btn btn-outline">📄 تحميل CV</a>
+    <a href="Turki_CV_Instrument-26.pdf" download class="btn btn-outline">📄 تحميل السيرة الذاتية</a>
   </div>
 </section>
 
@@ -232,9 +239,9 @@
     <div class="card card-featured">
       <div class="card-icon">⚙️</div>
       <div class="card-featured-body">
-        <h3>الآلات الدقيقة</h3>
-        <p>Instrumentation & Control — خبرة ميدانية في بيئات صناعية حساسة ومراقبة الأنظمة.</p>
-        <div class="card-featured-badge">✦ تخصص رئيسي</div>
+        <h3>الآلات الدقيقة وأنظمة التحكم</h3>
+        <p>Instrumentation & Control (I&C) — معايرة، صيانة، Loop Checking، وتشغيل في بيئات النفط والغاز.</p>
+        <div class="card-featured-badge">✦ تخصص رئيسي · 3+ سنوات</div>
       </div>
     </div>
 
@@ -251,15 +258,21 @@
     </div>
 
     <div class="card">
-      <div class="card-icon">🔍</div>
-      <h3>تحليل وأنظمة</h3>
-      <p>حل مشاكل وبناء حلول تقنية متكاملة</p>
+      <div class="card-icon">📊</div>
+      <h3>إدارة البيانات</h3>
+      <p>Data Entry، Database Management، Document Control، Microsoft Excel</p>
     </div>
 
     <div class="card">
-      <div class="card-icon">🤝</div>
-      <h3>خدمة العملاء</h3>
-      <p>تواصل احترافي وفهم احتياجات العميل</p>
+      <div class="card-icon">🔒</div>
+      <h3>السلامة الصناعية</h3>
+      <p>Industrial Safety Compliance في مواقع النفط والغاز</p>
+    </div>
+
+    <div class="card">
+      <div class="card-icon">🔍</div>
+      <h3>تشخيص وصيانة</h3>
+      <p>Troubleshooting، Fault Diagnosis، Corrective & Preventive Maintenance</p>
     </div>
 
   </div>
@@ -274,19 +287,49 @@
   <div class="exp">
     <div class="exp-dot"></div>
     <div class="exp-content">
-      <h4>فني آلات دقيقة — معمل غاز</h4>
-      <span>سنتين</span>
-      <p>العمل في بيئة تشغيل حساسة ومراقبة الأنظمة الصناعية.</p>
+      <h4>Instrument Technician Assistant</h4>
+      <div class="exp-meta">
+        <span class="exp-company">Hyundai Engineering & Construction — مشروع جافورة</span>
+        <span>مار 2023 – مار 2026</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>معايرة واختبار وصيانة الأجهزة الدقيقة في منشآت النفط والغاز</li>
+        <li>دعم أنشطة التشغيل بما في ذلك Loop Checking وإعداد الأدوات الميدانية</li>
+        <li>تشخيص الأعطال وتنفيذ الإجراءات التصحيحية مع الفرق الهندسية</li>
+        <li>الالتزام بمعايير السلامة الصناعية ومواصفات المشروع</li>
+      </ul>
     </div>
   </div>
 
   <div class="exp">
     <div class="exp-dot"></div>
     <div class="exp-content">
-      <h4>مندوب مبيعات شرائح</h4>
-      <span>سنة واحدة</span>
-      <p>تحقيق أهداف مبيعات والتعامل المباشر مع العملاء.</p>
+      <h4>Data Entry Operator</h4>
+      <div class="exp-meta">
+        <span class="exp-company">Arab Construction and Building Company</span>
+        <span>يون 2016 – مار 2023</span>
+      </div>
+      <ul class="exp-bullets">
+        <li>إدخال وتحقق وصيانة بيانات المشاريع بدقة عالية</li>
+        <li>إدارة قواعد البيانات والوثائق والتقارير</li>
+        <li>استخدام Microsoft Excel لتتبع البيانات والتحقق منها</li>
+      </ul>
     </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-header">
+    <div class="section-title">الشهادات والدورات</div>
+    <div class="section-line"></div>
+  </div>
+  <div class="certs-grid">
+    <div class="cert-item"><div class="cert-icon">🎓</div><div>دبلوم آلات دقيقة — المعهد الوطني للتدريب الصناعي</div></div>
+    <div class="cert-item"><div class="cert-icon">💻</div><div>Front-End Development — الاتحاد السعودي للأمن السيبراني والبرمجة</div></div>
+    <div class="cert-item"><div class="cert-icon">⚡</div><div>Back-End Development — الاتحاد السعودي للأمن السيبراني والبرمجة</div></div>
+    <div class="cert-item"><div class="cert-icon">🔐</div><div>Cybersecurity Fundamentals — المؤسسة العامة للتدريب التقني والمهني</div></div>
+    <div class="cert-item"><div class="cert-icon">📊</div><div>أساسيات تقنية المعلومات — Excel وتطبيقات بيئة العمل</div></div>
+    <div class="cert-item"><div class="cert-icon">📋</div><div>أساسيات الإدارة والأعمال</div></div>
   </div>
 </section>
 
@@ -297,25 +340,28 @@
   </div>
   <div class="grid">
     <div class="card">
-      <div class="card-icon">⚡</div>
-      <h3>تنفيذ سريع</h3>
-      <p>أحول الأفكار إلى نتائج بدون تعقيد.</p>
+      <div class="card-icon">🏭</div>
+      <h3>خبرة ميدانية حقيقية</h3>
+      <p>3+ سنوات في بيئة صناعية حساسة — مشروع جافورة، النفط والغاز.</p>
     </div>
     <div class="card">
       <div class="card-icon">🧠</div>
-      <h3>تفكير عملي</h3>
-      <p>أركز على الحلول الواقعية مو النظرية.</p>
+      <h3>تقني + برمجي</h3>
+      <p>نادر تلاقي خلفية I&C مع مهارات تطوير — أستفيد من الاثنين.</p>
     </div>
     <div class="card">
-      <div class="card-icon">💬</div>
-      <h3>تواصل قوي</h3>
-      <p>أفهم احتياج العمل بسرعة وأتفاعل معه.</p>
+      <div class="card-icon">⚡</div>
+      <h3>تنفيذ سريع</h3>
+      <p>أحول الأفكار إلى نتائج بدون تعقيد غير ضروري.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2026 <strong>Turki</strong> — جاهز لفرص جديدة &nbsp;·&nbsp; <a href="mailto:trke_max@icloud.com">trke_max@icloud.com</a></p>
+  <p>© 2026 <strong>Turki Saad Alrayes</strong> — جاهز لفرص جديدة &nbsp;·&nbsp;
+    <a href="mailto:trke_max@icloud.com">trke_max@icloud.com</a> &nbsp;·&nbsp;
+    <a href="tel:0533306072">0533306072</a>
+  </p>
 </footer>
 
 </body>
